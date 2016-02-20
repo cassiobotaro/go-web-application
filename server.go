@@ -28,8 +28,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, nil)
 	} else {
 		r.ParseForm()
-		fmt.Println("username: ", r.Form["username"])
-		fmt.Println("password: ", r.Form["password"])
+		fmt.Println("username: ", template.HTMLEscapeString(r.Form.Get("username")))
+		fmt.Println("password: ", template.HTMLEscapeString(r.Form.Get("password")))
+		t, _ := template.New("foo").Parse(`{{define "T"}}Hello, {{.}}!{{end}}`)
+		t.ExecuteTemplate(w, "T", template.HTML("<script>alert('blah!')</script>"))
 	}
 }
 
