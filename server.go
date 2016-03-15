@@ -9,12 +9,10 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"teste/tst"
 	"time"
 )
 
 func sayHelloName(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(teste)
 	r.ParseForm()
 	fmt.Println(r.Form)
 	fmt.Println("path", r.URL.Path)
